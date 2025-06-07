@@ -1,0 +1,122 @@
+Methods to pass arrays as arguments:
+1. Pass arrays by reference: 
+	Syntax: return_type functionName(data_type (&arrayAlias)[size]){
+				// function body
+			}
+	
+	Note:
+		1. The parantheses tells the compiler to create a reference to an array.
+		   This only accepts(or expects) an array of 'data_type' type of size '[size]'.
+			
+		2. 'int & arryAlias [size]' is invalid. It tells the compiler to create
+			an array of references of the given size 'size', an it's invalid.
+			
+		3. In C++, array sizes are a part of their type, so an array of size of 4 is 
+		   considered different type than an array of size 5. Therefore a function call
+		   with different size(greater or lesser) than the '[size]' would be incompatible 
+		   with the function defintion and result in error.
+		   e.g., invalid initialization of reference of type 'int (&)[8]' from 
+		         expression of type 'int [7]
+				 
+				Here is an exampl;
+				void arrayReference(int (&array)[5]);
+				
+				int myArray[] = {1,2,8,3,6,9,4,5};
+				
+				// calling arrayReference with the argument 'myArray'
+				arrayReference(myArray);
+				
+				// Will give an error, invalid initialization of reference of type 'int (&)[5]' 
+				// from expression of type 'int [8]
+				
+		4. 'Why return_type functionName(int & arrayAlias[size])' is different and invalid
+		    from return_type functionName(data_type (&arrayAlias)[size])?'
+			
+			The 'subscript operator []' has higher precedence over '& operator' and parantheses
+			is used to override precedence. Therefore without parantheses the compiler would
+			interpret 'arrayAlias[size]' as an array of size '[size]' then the & operator would
+			be applied and results in array of references. This would lead to an error because 'array
+			of references' is not allowed in C++. (&arrayAlias) acts a nickname to passed array while
+			the & array[size] acts as an array of references. 
+			So the parantheses is used and neccessary to resolve the ambiguity in the precedence of
+			subscript operator '[]' and '& operator'.
+			
+			"It is a syntax. In the function arguments int (&myArray)[100] parenthesis that enclose 
+			the &myArray are necessary. if you don't use them, you will be passing an array of references
+			and that is because the subscript operator [] has higher precedence over the & operator.
+			E.g. int &myArray[100] // array of references
+			
+			So, by using type construction () you tell the compiler that you want a reference to an array of 100
+			integers.
+			E.g int (&myArray)[100] // reference of an array of 100 ints"
+			
+			Also 'subscript operator []' has left-to-right associativity and '& operator' has 'right-to-left'
+			associativity.
+
+		5. All these tantrums affects the original array if any changes made to reference array inside the function
+		   since a reference is another name for the same memory location.
+		   
+	## Other ways to pass the size;
+	"template<size_t N>;" 
+	return_type functionName(int (&arrayAlias)[N]);
+	where N is a variable that stores the size calculated by compiler during compilation.
+	This method is convenient as we do  not have to worry about the fixed size of reference array in the argument 
+	used in first syntax and the size of the passed array.
+
+	In pass array by reference method we donot need to pass the size in the function call as references can be used
+	to calculate the size.
+
+2. Pass By Pointer:	
+				Syntax: return_type functionName(data_type* arrayParam, int size){
+							// function body
+						}
+				
+				Note:
+					1. This method works on the fact the name of an array decay to a pointer to the first element
+					   of array if used without subscript operator[] in a function call(when used as a prvalue in an expression).
+					   In other words functionName(someArray, 5) decays to functionName(&someArray[0], 5), the address of the first
+					   element and thus function parameter receives the address of the first element.Pointers can only be used to
+					   access the elements of an array using pointer arithmetic if there exists a pointer to the first element and
+					   this is the reason in this method we need to pass the size of the array in the function call as the pointer
+					   to the first element is not enough to calculate the size of the array.
+					   
+					   The syntax mentioned above is same as the syntax:
+									return_type functionName(data_type arrayParam[], int size){
+										// function body
+									}
+					  Apart from the explicitness of specifying a pointer versus relying on array decay, there is no fundamental
+					  difference in functionality between the two methods. Both approaches achieve the same goal of passing an
+					  array to a function, and both allow you to access array elements using pointer arithmetic or array syntax
+					  within the function body. The choice between them often depends on coding style, readability, and personal
+					  preference.
+					   
+					   
+					   The array is a "packed sequence of identical elements". That decay into a pointer when passed as an 
+					   argument. The fact that you can use pointer arithmetic to access the array elements (a[5] is nothing
+					   more than *(a+5)) does not make the pointer to become the array. They sit in memory into well different
+					   places.
+					   
+					In fact, because arrays cannot be passed by value due to an old C restriction, there is some special magic
+					that happens with arrays as function arguments.
+
+					The function declaration:
+
+					void funcA(int[]);
+					is silently translated into the following:
+
+					void funcA(int*);
+					and when you write this:
+
+					funcA(myArray);
+					it is silently translated into the following:
+
+					funcA(&myArray[0]);
+					The result is that you're not passing the array at all; you pass a pointer to its first element.
+
+					Now, at certain levels of abstraction/simplification, you can call this "passing an array by pointer", 
+					"passing an array by reference" or even "passing a handle to an array", but if you want to talk in C++ 
+					terms, none of those phrases are accurate.
+				
+				
+					
+				

@@ -1,0 +1,40 @@
+1.Pattern: Characters, Numbers, Asterisk, Mixed
+2.Numbers: Range Based Even, Odd, and Prime numbers
+			factorial, permutation, combination
+3.Loops: break, continue, fibonacci_series
+4.Conversion: Binary to decimal, Decimal to Binary
+  using bitwise operators.
+5.LeetCode:
+			a.)Difference of product and sum of digits
+			b.)Integer Reversal
+			c.)Complement of a binary
+			d.)Complement of integer
+			d.)Checking a number is power of two
+			e.)Number of notes in a given amount
+			
+6.)Arrays:
+		a.)Understanding arrays:
+			How it is stored, how the name behaves,
+			manipulating elments using address_of operators
+			dereference operator, subscript operator
+			array-to-pointer decay
+			array pass by reference and pointer
+		
+		b.)Largest element in an array
+		c.)Smallest element in an array
+		d.)Sum and product of elements
+		e.)Sum of alternate elements(uattempted)
+		f.)Array reversal and palindrome checking
+		g.)Swapping addjacentlements 
+		h.)Printing even elements
+		i.)Printing odd elements
+		j.)Printing prime number elements
+		k.)Elements with even number of digits
+		l.)Elements with odd number of digits
+		m.)Searching a given element(Linear search)
+		n.)Unique elements
+		o.)All unique elements(unattempted)
+		p.)Duplicate elements
+		q.)All duplicate elements(unattempted)
+		r.)Number of unique occurences
+		

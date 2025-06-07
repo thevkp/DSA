@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "limits": "cpp",
+        "chrono": "cpp",
+        "random": "cpp",
+        "valarray": "cpp"
+    }
+}

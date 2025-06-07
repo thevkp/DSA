@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../OOP"
+		},
+		{
+			"path": "../OOP_Problems"
+		},
+		{
+			"path": "../Pointers_And_Arrays"
+		}
+	]
+}
